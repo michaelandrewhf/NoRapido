@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Solicitação rápida de vale com cálculo automático do valor de devolução e envio direto para o WhatsApp."
+    />
+    <title>NoRápido | Solicitação de Vale</title>
+    <link
+      rel="icon"
+      type="image/jpeg"
+      href="assets/WhatsApp%20Image%202026-04-04%20at%2019.15.57.jpeg"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="page-shell">
+      <section class="hero-card" aria-labelledby="page-title">
+        <div class="brand-block">
+          <img
+            class="brand-image"
+            src="assets/WhatsApp Image 2026-04-04 at 19.15.57.jpeg"
+            alt="Marca NoRápido Entregas"
+          />
+          <div class="brand-copy">
+            <p class="eyebrow">Solicitação de vale</p>
+            <h1 id="page-title">Peça seu vale em poucos segundos</h1>
+          </div>
+        </div>
+
+        <div class="content-grid">
+          <form id="loan-form" class="loan-form" novalidate>
+            <div class="field-group">
+              <label for="requester-name">Nome do solicitante</label>
+              <input
+                id="requester-name"
+                name="requesterName"
+                type="text"
+                placeholder="Digite seu nome"
+                autocomplete="name"
+                maxlength="80"
+                required
+              />
+            </div>
+
+            <div class="field-group">
+              <label for="requested-amount">Valor solicitado</label>
+              <div class="currency-input">
+                <span>R$</span>
+                <input
+                  id="requested-amount"
+                  name="requestedAmount"
+                  type="text"
+                  inputmode="decimal"
+                  placeholder="0,00"
+                  required
+                />
+              </div>
+              <small class="helper-text">Limite máximo de R$ 100,00 por solicitação.</small>
+            </div>
+
+            <div class="rules-card" aria-label="Regras de juros">
+              <p class="rules-title">Regras de devolução</p>
+              <ul>
+                <li>Até R$ 50,00 → <strong>10%</strong></li>
+                <li>Acima de R$ 50,00 até R$ 70,00 → <strong>15%</strong></li>
+                <li>Acima de R$ 70,00 até R$ 100,00 → <strong>20%</strong></li>
+              </ul>
+            </div>
+
+            <p id="form-error" class="form-error" role="alert" aria-live="polite"></p>
+
+            <button id="submit-button" type="submit" class="submit-button" disabled>
+              Concluir solicitação
+            </button>
+          </form>
+
+          <aside class="summary-card" aria-live="polite">
+            <div>
+              <p class="summary-label">Resumo da solicitação</p>
+              <h2>Valor a devolver</h2>
+            </div>
+
+            <div class="summary-values">
+              <div>
+                <span>Solicitado</span>
+                <strong id="summary-requested">R$ 0,00</strong>
+              </div>
+              <div>
+                <span>Taxa aplicada</span>
+                <strong id="summary-rate">0%</strong>
+              </div>
+              <div>
+                <span>Juros</span>
+                <strong id="summary-interest">R$ 0,00</strong>
+              </div>
+            </div>
+
+            <div class="total-box">
+              <span>Total para devolução</span>
+              <strong id="summary-total">R$ 0,00</strong>
+            </div>
+
+            <p id="summary-note" class="summary-note">
+              Preencha os campos para visualizar o cálculo automaticamente antes de enviar.
+            </p>
+          </aside>
+        </div>
+      </section>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>
