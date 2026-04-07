@@ -1,6 +1,7 @@
 const form = document.querySelector('#loan-form');
 const nameInput = document.querySelector('#requester-name');
 const amountInput = document.querySelector('#requested-amount');
+const termsAcceptanceInput = document.querySelector('#terms-acceptance');
 const errorElement = document.querySelector('#form-error');
 const submitButton = document.querySelector('#submit-button');
 const summaryCard = document.querySelector('.summary-card');
@@ -90,7 +91,8 @@ function updateSummary() {
 
   const hasValidName = nameInput.value.trim().length >= 2;
   const hasValidAmount = calculation.requested > 0 && calculation.requested <= MAX_AMOUNT;
-  submitButton.disabled = !(hasValidName && hasValidAmount);
+  const hasAcceptedTerms = termsAcceptanceInput?.checked === true;
+  submitButton.disabled = !(hasValidName && hasValidAmount && hasAcceptedTerms);
   submitButton.textContent = hasValidAmount
     ? `Concluir solicitação de ${formatCurrency(calculation.requested)}`
     : 'Concluir solicitação';
@@ -155,6 +157,14 @@ nameInput.addEventListener('input', () => {
   updateSummary();
 });
 
+termsAcceptanceInput?.addEventListener('change', () => {
+  if (termsAcceptanceInput.checked) {
+    showError('');
+  }
+
+  updateSummary();
+});
+
 form.addEventListener('submit', (event) => {
   event.preventDefault();
 
@@ -180,6 +190,12 @@ form.addEventListener('submit', (event) => {
     return;
   }
 
+  if (!termsAcceptanceInput?.checked) {
+    showError('Você precisa aceitar os termos para concluir a solicitação.');
+    termsAcceptanceInput?.focus();
+    return;
+  }
+
   showError('');
 
   const message = [
@@ -190,10 +206,11 @@ form.addEventListener('submit', (event) => {
     `Taxa aplicada: ${(calculation.rate * 100).toFixed(0)}%`,
     `Juros: ${formatCurrency(calculation.interest)}`,
     `Valor para devolução: ${formatCurrency(calculation.total)}`,
+    'Aceite dos termos: Li e aceito os termos da solicitação e o valor total informado para devolução.',
   ].join('\n');
 
   const whatsappUrl = `https://wa.me/${WHATSAPP_PHONE}?text=${encodeURIComponent(message)}`;
-  window.location.href = whatsappUrl;
+  window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
 });
 
 updateSummary();

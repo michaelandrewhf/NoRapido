@@ -51,6 +51,29 @@ input {
   padding: 24px 16px 40px;
 }
 
+.site-footer {
+  width: min(100%, 1080px);
+  margin: 20px auto 0;
+  text-align: center;
+  color: rgba(247, 248, 255, 0.82);
+  font-size: 0.95rem;
+}
+
+.site-footer p {
+  margin: 0;
+}
+
+.site-footer a {
+  color: var(--highlight);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.site-footer a:hover,
+.site-footer a:focus-visible {
+  text-decoration: underline;
+}
+
 .hero-card {
   width: min(100%, 1080px);
   margin: 0 auto;
@@ -188,6 +211,28 @@ input {
 .summary-note {
   color: var(--muted);
   line-height: 1.5;
+}
+
+.terms-field {
+  margin-bottom: 18px;
+}
+
+.terms-checkbox {
+  display: grid;
+  grid-template-columns: 20px 1fr;
+  gap: 12px;
+  align-items: start;
+  cursor: pointer;
+  color: var(--text-dark);
+  line-height: 1.5;
+}
+
+.terms-checkbox input {
+  width: 20px;
+  height: 20px;
+  margin: 2px 0 0;
+  padding: 0;
+  accent-color: var(--accent);
 }
 
 .rules-card {
